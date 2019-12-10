@@ -1,6 +1,9 @@
 //TODO: STEP 1 - Import the useState hook.
 import React, { useState } from "react";
 import "./App.css";
+
+import ScoreBoard from "./ScoreBoard";
+import ScoringButtons from "./ScoringButtons";
 import BottomRow from "./BottomRow";
 
 function App() {
@@ -8,14 +11,42 @@ function App() {
   const [homeScore, setValue] = useState(0);
   const [awayScore, initialValue] = useState(0);
 
+ // Event handlers
+  const reset = () => {
+    setValue(0);
+    initialValue(0);
+  };
+
+  const home = () =>{
+    setValue(homeScore +3)
+  }
+
+
+
   return (
     <div className="container">
-      <section className="scoreboard">
+      <ScoreBoard homescore={homeScore} awayscore={awayScore} />
+
+      <ScoringButtons
+        homeFieldGoalScore={hello}
+        homeTouchDownScore={() => setValue(homeScore + 7)}
+        resetScore={reset}
+        awayFieldGoalScore={() => initialValue(awayScore + 3)}
+        awayTouchDownScore={() => initialValue(awayScore + 7)}
+      />
+    </div>
+  );
+}
+
+export default App;
+
+{
+  /* <section className="scoreboard">
         <div className="topRow">
           <div className="home">
             <h2 className="home__name">Lions</h2>
 
-            {/* TODO STEP 3 - We need to change the hardcoded values in these divs to accept dynamic values from our state. */}
+            
 
             <div className="home__score">{homeScore}</div>
           </div>
@@ -26,20 +57,45 @@ function App() {
           </div>
         </div>
         <BottomRow />
-      </section>
-      <section className="buttons">
-        <div className="homeButtons">
-          {/* TODO STEP 4 - Now we need to attach our state setter functions to click listeners. */}
-          <button onClick={()=> setValue(homeScore +7)} className="homeButtons__touchdown">Home Touchdown</button>
-          <button onClick={()=> setValue(homeScore +3)}className="homeButtons__fieldGoal">Home Field Goal</button>
-        </div>
-        <div className="awayButtons">
-          <button onClick={()=> initialValue(awayScore +7)}className="awayButtons__touchdown">Away Touchdown</button>
-          <button onClick={()=> initialValue(awayScore +3)}className="awayButtons__fieldGoal">Away Field Goal</button>
-        </div>
-      </section>
-    </div>
-  );
+      </section> */
 }
+{
+  /* <section className="buttons">
+        <div className="homeButtons">
+          
+          <button
+            onClick={() => setValue(homeScore + 7)}
+            className="homeButtons__touchdown"
+          >
+            Home Touchdown
+          </button>
+          <button
+            onClick={() => setValue(homeScore + 3)}
+            className="homeButtons__fieldGoal"
+          >
+            Home Field Goal
+          </button>
+        </div>
 
-export default App;
+        <div className="buttons">
+          <button className="awayButtons__fieldGoal" onClick={reset}>
+            Reset
+          </button>
+        </div>
+
+        <div className="awayButtons">
+          <button
+            onClick={() => initialValue(awayScore + 7)}
+            className="awayButtons__touchdown"
+          >
+            Away Touchdown
+          </button>
+          <button
+            onClick={() => initialValue(awayScore + 3)}
+            className="awayButtons__fieldGoal"
+          >
+            Away Field Goal
+          </button>
+        </div>
+      </section> */
+}
